@@ -11,8 +11,8 @@ with open(path, 'r') as fr, \
         fw1.write(data[0] + '\n')
         fw2.write(data[1] + '\n')
 
-os.system(f'cat {path} | cut -f1 > col1-2.txt')
-os.system(f'cat {path} | cut -f2 > col2-2.txt')
+os.system(f'cat {path} | cut -f1 > col1-cl.txt')
+os.system(f'cat {path} | cut -f2 > col2-cl.txt')
 
-os.system(f'diff col1.txt col1-2.txt')
-os.system(f'diff col2.txt col2-2.txt')
+os.system(f'diff col1.txt col1-cl.txt')
+os.system(f'diff col2.txt col2-cl.txt')
