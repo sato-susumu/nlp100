@@ -1,15 +1,23 @@
 import json
 
-path = './data/jawiki-country.json'
 
-with open(path, "r") as f:
-    lines = f.readlines()
+def get_country_json() -> list:
+    path = './data/jawiki-country.json'
+    with open(path, "r") as f:
+        lines = f.readlines()
+        decoder = json.JSONDecoder()
+        tmp = [decoder.raw_decode(line) for line in lines]
+        return [tmp_record[0] for tmp_record in tmp]
+
+
+def get_england_json() -> list:
+    country_json = get_country_json()
     res = []
-    decoder = json.JSONDecoder()
-    tmp = [decoder.raw_decode(line) for line in lines]
-    json_data = [data[0] for data in tmp]
+    for data in country_json:
+        if 'イギリス' in data['title']:
+            res.append(data)
+    return res
 
-for data in json_data:
-    if 'イギリス' in data['title']:
-        print(data['text'])
-        print()
+
+for record in get_england_json():
+    print(f'{record["text"]}\n')
