@@ -19,5 +19,6 @@ def get_england_json() -> list:
     return res
 
 
-for record in get_england_json():
-    print(f'{record["text"]}\n')
+if __name__ == '__main__':
+    for record in get_england_json():
+        print(f'{record["text"]}\n')
