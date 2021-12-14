@@ -14,7 +14,7 @@ def get_england_json() -> list:
     country_json = get_country_json()
     res = []
     for data in country_json:
-        if 'イギリス' in data['title']:
+        if 'イギリス' == data['title']:
             res.append(data)
     return res
 
