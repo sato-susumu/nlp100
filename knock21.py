@@ -1,5 +1,5 @@
 import re
-from n20 import get_england_json
+from knock20 import get_england_json
 
 
 def get_england_lines() -> list:
