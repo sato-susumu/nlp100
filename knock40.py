@@ -14,22 +14,23 @@ class Morph:
     __repr__ = __str__
 
 
-path = './data/ai.ja.txt.parsed'
-results = []
-with open(path, "r") as f:
-    lines = f.readlines()
-    lines = [line[:-1] for line in lines]
-    tmp = []
-    for line in lines:
-        if re.match('^EOS', line):
-            results.append(tmp)
-            tmp = []
-            continue
-        if re.match('^\* ', line):
-            continue
-        (surface, others) = line.split('\t')
-        other_list = others.split(',')
-        tmp.append(Morph(surface, other_list[6], other_list[0], other_list[1]))
+if __name__ == '__main__':
+    path = './data/ai.ja.txt.parsed'
+    line_info_list = []
+    with open(path, "r") as f:
+        lines = f.readlines()
+        lines = [line[:-1] for line in lines]
+        morphs = []
+        for line in lines:
+            if re.match(r'^EOS', line):
+                line_info_list.append(morphs)
+                morphs = []
+                continue
+            if re.match(r'^\* ', line):
+                continue
+            (surface, others) = line.split('\t')
+            other_list = others.split(',')
+            morphs.append(Morph(surface, other_list[6], other_list[0], other_list[1]))
 
-for morph in results[2]:
-    print(f'{morph.surface} {morph.base} {morph.pos} {morph.pos1}')
+    for morph in line_info_list[2]:
+        print(f'{morph.surface} {morph.base} {morph.pos} {morph.pos1}')
