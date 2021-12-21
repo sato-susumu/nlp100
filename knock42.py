@@ -5,4 +5,6 @@ if __name__ == '__main__':
 
     for line in result:
         for chunk in line:
+            if chunk.dst == -1:
+                continue
             print(f'{chunk.surface}\t{line[chunk.dst].surface}')
