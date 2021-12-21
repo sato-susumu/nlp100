@@ -8,6 +8,11 @@ class Chunk:
         self.morphs = []
         self.srcs = []
         self.dst = dst
+        self.surface = ''
+
+    def append_morph(self, morph: Morph):
+        self.morphs.append(morph)
+        self.surface += re.sub(r'[、。〈〉（）「」『』]', '', morph.surface)
 
 
 def load_ai_ja_txt_parsed():
@@ -31,7 +36,7 @@ def load_ai_ja_txt_parsed():
             (surface, others) = line.split('\t')
             other_list = others.split(',')
             morph = Morph(surface, other_list[6], other_list[0], other_list[1])
-            current_chunk.morphs.append(morph)
+            current_chunk.append_morph(morph)
 
     for line in line_info_list:
         for i, chunk in enumerate(line):
