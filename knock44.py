@@ -3,8 +3,9 @@ from graphviz import Digraph
 
 if __name__ == '__main__':
     result = load_ai_ja_txt_parsed()
+    tmp_dir_path = '/tmp'
 
-    dg = Digraph(format='png')
+    dg = Digraph(directory=tmp_dir_path, format='png')
     line_no = 2
 
     # ノード作成
