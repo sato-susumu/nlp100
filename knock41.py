@@ -10,10 +10,22 @@ class Chunk:
         self.dst = dst
         self.surface = ''
 
-    def append_morph(self, morph: Morph):
+    def append_morph(self, morph: Morph) -> None:
         self.morphs.append(morph)
         if morph.pos != '記号':
             self.surface += morph.surface
+
+    def has_noun(self) -> bool:
+        for morph in self.morphs:
+            if morph.pos == '名詞':
+                return True
+        return False
+
+    def has_verb(self) -> bool:
+        for morph in self.morphs:
+            if morph.pos == '動詞':
+                return True
+        return False
 
 
 def load_ai_ja_txt_parsed():
