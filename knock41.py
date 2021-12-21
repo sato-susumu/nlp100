@@ -12,7 +12,8 @@ class Chunk:
 
     def append_morph(self, morph: Morph):
         self.morphs.append(morph)
-        self.surface += re.sub(r'[、。〈〉（）「」『』]', '', morph.surface)
+        if morph.pos != '記号':
+            self.surface += morph.surface
 
 
 def load_ai_ja_txt_parsed():
