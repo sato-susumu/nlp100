@@ -21,11 +21,31 @@ class Chunk:
                 return True
         return False
 
+    def has_particle(self) -> bool:
+        for morph in self.morphs:
+            if morph.pos == '助詞':
+                return True
+        return False
+
     def has_verb(self) -> bool:
         for morph in self.morphs:
             if morph.pos == '動詞':
                 return True
         return False
+
+    def get_verb(self, index: int) -> Morph:
+        morph_list = []
+        for morph in self.morphs:
+            if morph.pos == '動詞':
+                morph_list.append(morph)
+        return morph_list[index]
+
+    def get_particle(self, index: int) -> Morph:
+        morph_list = []
+        for morph in self.morphs:
+            if morph.pos == '助詞':
+                morph_list.append(morph)
+        return morph_list[index]
 
 
 def load_ai_ja_txt_parsed():
