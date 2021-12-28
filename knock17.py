@@ -1,12 +1,11 @@
 import os
-
+import pandas as pd
 
 path = './data/popular-names.txt'
-N = 5
-with open(path) as f:
-    lines = f.readlines()
-    name_set = set([line.split('\t')[0] for line in lines])
+df = pd.read_csv(path, sep='\t', header=None, names=['name'], usecols=['name'])
 
-print(name_set)
+for val in df['name'].sort_values().unique():
+    print(val)
+
 print('')
 os.system(f' cut -f 1 {path} | sort | uniq')
