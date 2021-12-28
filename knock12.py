@@ -1,15 +1,11 @@
 import os
-
+import pandas as pd
 path = './data/popular-names.txt'
 out_path1 = 'col1.txt'
 out_path2 = 'col2.txt'
-with open(path, 'r') as fr, \
-        open(out_path1, 'w') as fw1, \
-        open(out_path2, 'w') as fw2:
-    for line in fr.readlines():
-        data = line[:-1].split('\t')
-        fw1.write(data[0] + '\n')
-        fw2.write(data[1] + '\n')
+df = pd.read_csv(path, sep='\t', header=None, names=['name', 'sex'], usecols=['name', 'sex'])
+df['name'].to_csv(out_path1, index=False, header=False)
+df['sex'].to_csv(out_path2, index=False, header=False)
 
 os.system(f'cat {path} | cut -f1 > col1-cl.txt')
 os.system(f'cat {path} | cut -f2 > col2-cl.txt')
