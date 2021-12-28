@@ -1,19 +1,12 @@
 import os
-from functools import cmp_to_key
-
-
-def compare(a, b):
-    a_2 = int(a.split('\t')[2])
-    b_2 = int(b.split('\t')[2])
-    return a_2 - b_2
-
+import pandas as pd
 
 path = './data/popular-names.txt'
-with open(path) as f:
-    lines = f.readlines()
-    new_lines = sorted(lines, key=cmp_to_key(compare), reverse=True)
-    for line in new_lines:
-        print(line[:-1])
+df = pd.read_csv(path, sep='\t', header=None, names=['name', 'sex', 'count', 'year'])
+df.sort_values(by='count', ascending=False, inplace=True)
+for _, values in df.head(5).iterrows():
+    print(f'{values[0]}\t{values[1]}\t{values[2]}\t{values[3]}')
 
-
-os.system(f'sort -r -n -k 3 {path}')
+print('')
+# 「2>/dev/null」でエラー出力を無視する
+os.system(f'sort -r -n -k 3 {path} 2>/dev/null | head -n 5')
