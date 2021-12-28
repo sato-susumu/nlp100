@@ -1,11 +1,9 @@
 import os
-from collections import Counter
+import pandas as pd
 
 path = './data/popular-names.txt'
-with open(path) as f:
-    lines = f.readlines()
-    name_list = [(line.split('\t')[0]) for line in lines]
-    c = Counter(name_list)
-    print(c.most_common())
+df = pd.read_csv(path, sep='\t', header=None, names=['name', 'sex', 'count', 'year'])
+for index, value in df['name'].value_counts().iteritems():
+    print(index, ': ', value)
 
 os.system(f'cut -f 1 {path} | sort | uniq -c | sort -n -r')
