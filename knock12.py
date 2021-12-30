@@ -3,7 +3,7 @@ import pandas as pd
 path = './data/popular-names.txt'
 out_path1 = 'col1.txt'
 out_path2 = 'col2.txt'
-df = pd.read_csv(path, sep='\t', header=None, names=['name', 'sex'], usecols=['name', 'sex'])
+df = pd.read_table(path, header=None, names=['name', 'sex'], usecols=['name', 'sex'])
 df['name'].to_csv(out_path1, index=False, header=False)
 df['sex'].to_csv(out_path2, index=False, header=False)
 

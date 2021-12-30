@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 path = './data/popular-names.txt'
-df = pd.read_csv(path, sep='\t', header=None, names=['name', 'sex', 'count', 'year'])
+df = pd.read_table(path, header=None, names=['name', 'sex', 'count', 'year'])
 df.sort_values(by='count', ascending=False, inplace=True)
 for _, values in df.head(5).iterrows():
     print(f'{values[0]}\t{values[1]}\t{values[2]}\t{values[3]}')

@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 path = './data/popular-names.txt'
-df = pd.read_csv(path, sep='\t', header=None, names=['name'], usecols=['name'])
+df = pd.read_table(path, header=None, names=['name'], usecols=['name'])
 
 for val in df['name'].sort_values().unique():
     print(val)
