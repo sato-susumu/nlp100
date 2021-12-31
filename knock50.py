@@ -16,9 +16,9 @@ train_df, other_df = train_test_split(df, test_size=0.2)
 test_df, valid_df = train_test_split(other_df, test_size=0.5)
 
 columns = ['title', 'category']
-train_df[columns].to_csv('train.txt', sep='\t', index=False)
-test_df[columns].to_csv('test.txt', sep='\t', index=False)
-valid_df[columns].to_csv('valid.txt', sep='\t', index=False)
+train_df[columns].to_csv('./output/train.txt', sep='\t', index=False)
+test_df[columns].to_csv('./output/test.txt', sep='\t', index=False)
+valid_df[columns].to_csv('./output/valid.txt', sep='\t', index=False)
 
 print(f'df size = {len(df)}')
 print(f'train size = {len(train_df)}')
