@@ -133,7 +133,5 @@ dmypy.json
 # user
 .idea/
 *.txt
-/data/NewsAggregatorDataset/newsCorpora.csv
-/data/NewsAggregatorDataset/2pageSessions.csv
-
+/data/
 /output/
