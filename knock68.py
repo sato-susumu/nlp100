@@ -1,13 +1,10 @@
 import pandas as pd
-from sklearn.cluster import AgglomerativeClustering
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 
 input_path = './output/knock67.pickle'
-
 df = pd.read_pickle(input_path)
-
-clustering_model = AgglomerativeClustering(n_clusters=5)
-clustering_model.fit(df['vector'].tolist())
-labels = clustering_model.labels_
-print(labels)
-df['label'] = labels
-print(df[['country', 'label']].sort_values('label'))
+Z = linkage(df['vector'].tolist(), method="ward", metric="euclidean")
+fig = plt.figure()
+dendrogram(Z, labels=df['country'].tolist(), orientation='right', color_threshold=4)
+plt.show()
